@@ -17,7 +17,7 @@ class OAuthAccount(Base):
     tenant_id = Column(Integer, ForeignKey("tenants.id"))
     provider = Column(String)            # 'gmail' | 'outlook'
     email = Column(String)
-    token_encrypted = Column(Text)       # 加密后的 token JSON
+    token_encrypted = Column(Text)       # encrypted token JSON
     scopes = Column(JSON, default={})
 
 class EmailThread(Base):
@@ -62,5 +62,5 @@ class Outbox(Base):
     meta = Column(JSON, default={})
     created_at = Column(DateTime, default=datetime.utcnow)
 
-# 首次运行时建表
+# Establishing form
 Base.metadata.create_all(bind=engine)
